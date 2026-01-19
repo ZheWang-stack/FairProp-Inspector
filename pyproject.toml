@@ -34,8 +34,6 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest",
-    "jupyter",
-    "ipykernel",
 ]
 
 [project.urls]
