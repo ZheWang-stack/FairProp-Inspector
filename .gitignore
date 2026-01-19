@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Data & Artifacts
+data/
+artifacts/
+*.pth
+*.bin
+*.ckpt
+
+# IDE
+.vscode/
+.idea/

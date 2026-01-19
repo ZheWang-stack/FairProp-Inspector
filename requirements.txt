@@ -1,0 +1,23 @@
+# Core AI
+torch>=2.0.0
+transformers>=4.30.0
+datasets>=2.12.0
+accelerate>=0.20.0
+
+# Data Processing
+pandas
+numpy
+scikit-learn
+
+# Utilities
+tqdm
+python-dotenv
+
+# Deployment
+onnx>=1.14.0
+onnxruntime>=1.15.0
+
+# Professional Tools
+rich>=13.0.0
+pydantic>=2.0.0
+wandb>=0.15.0

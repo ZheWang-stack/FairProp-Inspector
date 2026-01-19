@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fairprop-inspector"
+version = "0.1.0"
+description = "Laboratory for training and fine-tuning Small Language Models (SLMs) for Fair Housing Act (FHA) compliance."
+readme = "README.md"
+authors = [
+  { name="FairProp Contributors" },
+]
+license = { file="LICENSE" }
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "torch>=2.0.0",
+    "transformers>=4.30.0",
+    "datasets>=2.12.0",
+    "accelerate>=0.20.0",
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "tqdm",
+    "python-dotenv",
+    "onnx>=1.14.0",
+    "onnxruntime>=1.15.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "jupyter",
+    "ipykernel",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ZheWang-stack/FairProp-Inspector"
+"Bug Tracker" = "https://github.com/ZheWang-stack/FairProp-Inspector/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
