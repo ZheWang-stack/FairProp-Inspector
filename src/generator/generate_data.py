@@ -22,10 +22,10 @@ def generate_synthetic_data(rules: Dict, num_samples: int) -> List[Dict]:
     
     # Mock generation logic for skeleton
     templates = [
-        ("No kids allowed.", "NON_COMPLIANT", "Quiet community available for all residents."),
-        ("Great for families.", "COMPLIANT", "Great for families."),
-        ("Christian only.", "NON_COMPLIANT", "Open to people of all faiths."),
-        ("Walking distance to shops.", "COMPLIANT", "Walking distance to shops.")
+        ("No kids allowed.", 1, "Quiet community available for all residents."),
+        ("Great for families.", 0, "Great for families."),
+        ("Christian only.", 1, "Open to people of all faiths."),
+        ("Walking distance to shops.", 0, "Walking distance to shops.")
     ]
     
     for _ in range(num_samples):

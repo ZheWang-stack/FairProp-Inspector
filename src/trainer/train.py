@@ -65,10 +65,16 @@ def load_data(file_path: str) -> Dataset:
         logger.critical("Failed to parse JSON data.")
         sys.exit(1)
     
-    # Format for HF Dataset: list of dicts -> dict of lists
+    # Label mapping to handle both strings and integers
+    label_map = {"COMPLIANT": 0, "NON_COMPLIANT": 1}
+    
     hf_data = {
         "text": [item["text"] for item in data],
-        "label": [item["label"] for item in data]
+        "label": [
+            item["label"] if isinstance(item["label"], int) 
+            else label_map.get(item["label"], 0) 
+            for item in data
+        ]
     }
     logger.info(f"Successfully loaded [bold green]{len(data)}[/bold green] examples.")
     return Dataset.from_dict(hf_data)
