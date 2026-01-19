@@ -40,7 +40,7 @@ def generate_synthetic_data(rules: Dict, num_samples: int) -> List[Dict]:
 
 def main():
     parser = argparse.ArgumentParser(description="Generate synthetic FHA compliance data.")
-    parser.add_argument("--rules", type=str, default="../../ease/fha_rules.json", help="Path to FHA rules JSON")
+    parser.add_argument("--rules", type=str, default="../ease/fha_rules.json", help="Path to FHA rules JSON")
     parser.add_argument("--output", type=str, default="data/processed/synthetic_train.json", help="Output path")
     parser.add_argument("--count", type=int, default=100, help="Number of samples to generate")
     args = parser.parse_args()

@@ -15,7 +15,7 @@ def predict_onnx(text, model_dir):
     session = ort.InferenceSession(model_path, providers=providers)
     
     # Preprocess text
-    inputs = tokenizer(text, return_tensors="np", truncation=True, max_length=128)
+    inputs = tokenizer(text, return_tensors="np", truncation=True, max_length=512)
     
     # Prepare ONNX inputs
     # session.get_inputs() gives you the names: 'input_ids' and 'attention_mask'

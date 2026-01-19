@@ -9,12 +9,14 @@ def predict(text, model_path):
         tokenizer = AutoTokenizer.from_pretrained(model_path)
         model = AutoModelForSequenceClassification.from_pretrained(model_path)
     except OSError:
-        print(f"⚠️  Could not find trained model at {model_path}. Loading base model 'distilbert-base-uncased' (untrained on this task).")
-        model_path = "distilbert-base-uncased"
+        # Match training architecture: ModernBERT-base
+        model_path = "answerdotai/ModernBERT-base"
+        print(f"⚠️  Could not find trained model at {model_path}. Loading base model '{model_path}' (untrained on this task).")
         tokenizer = AutoTokenizer.from_pretrained(model_path)
         model = AutoModelForSequenceClassification.from_pretrained(model_path, num_labels=2)
 
-    inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=128)
+    # Match max_length from training (512) for consistency
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=512)
     
     with torch.no_grad():
         logits = model(**inputs).logits

@@ -10,12 +10,21 @@ FairProp Inspector is a high-performance, latency-critical inference engine desi
 
 Built for the **On-Device AI** era, it runs efficiently on edge hardware while maintaining privacy-first architecture.
 
-<div align="center">
-  <img src="https://via.placeholder.com/800x400?text=FairProp+Architecture+Diagram" alt="Architecture Diagram">
-  <p align="center">
-    <em>Part of the <a href="https://github.com/ZheWang-stack/FairProp-AI">FairProp AI Platform</a> ecosystem.</em>
-  </p>
-</div>
+```mermaid
+graph TD
+    A[FHA Rules & Heuristics] --> B[Synthetic Generator <i>(GPT-4o Distillation)</i>]
+    B --> C[(Synthetic Dataset)]
+    C --> D[ModernBERT Fine-tuning <i>(BF16 / FlashAttention)</i>]
+    D --> E{Model Serialization}
+    E --> F[PyTorch Checkpoint]
+    E --> G[ONNX Export <i>(Quantized)</i>]
+    G --> H[Edge Inference <i>(Browser/Embedded)</i>]
+    F --> I[Compliance API/Platform]
+```
+
+<p align="center">
+  <em>Part of the <a href="https://github.com/ZheWang-stack/FairProp-AI">FairProp AI Platform</a> ecosystem.</em>
+</p>
 
 ## 🚀 Key Features
 

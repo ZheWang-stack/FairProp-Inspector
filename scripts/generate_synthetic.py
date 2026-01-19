@@ -57,9 +57,10 @@ class OpenAIGenerator(DataGenerator):
     4. Disability (e.g., "Active community, no wheelchairs", "Walking distance only")
     
     CRITICAL INSTRUCTIONS:
-    - 50% must be COMPLIANT (0). 50% must be NON-COMPLIANT (1).
+    - 50% must be COMPLIANT (label: 0). 50% must be NON-COMPLIANT (label: 1).
     - For violations, be SUBTLE. Don't just say "No kids". Say "Adult ecosystem" or "Ideal for empty nesters".
-    - Output must be valid JSON list of objects matching the schema.
+    - ALWAYS return a JSON object with a key "examples" which contains the list of data.
+    - Each example must have: "text", "label", "violation_category", and "reasoning".
     """
 
     def __init__(self, api_key: str):
@@ -67,14 +68,11 @@ class OpenAIGenerator(DataGenerator):
 
     def generate(self, count: int) -> List[Example]:
         """Generates a batch of examples."""
-        # Note: In a real prod environment, we would batch this properly to avoid token limits.
-        # For this script, we assume a reasonable 'count' per call or loop.
-        
         response = self.client.chat.completions.create(
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": self.SYSTEM_PROMPT},
-                {"role": "user", "content": f"Generate {count} examples. Return ONLY raw JSON array."}
+                {"role": "user", "content": f"Generate {count} quality examples as a JSON object with an 'examples' key."}
             ],
             response_format={"type": "json_object"}
         )
@@ -84,10 +82,8 @@ class OpenAIGenerator(DataGenerator):
             return []
             
         try:
-            # Parse wrapper if needed, dependent on model behavior
             data = json.loads(content)
-            # Handle potential inconsistency in top-level keys
-            items = data.get("examples", data.get("data", []))
+            items = data.get("examples", [])
             return [Example(**item) for item in items]
         except Exception as e:
             console.print(f"[bold red]Failed to parse LLM output:[/bold red] {e}")
