@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zhewang-stack.github.io/FairProp-Inspector/sitemap.xml
