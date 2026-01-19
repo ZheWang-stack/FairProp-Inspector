@@ -95,6 +95,7 @@
                 </a>
 
                 <div class="hidden md:flex items-center space-x-8 text-sm font-mono text-gray-400">
+                    <a href="#about" class="hover:text-cyber-green transition-colors">./about</a>
                     <a href="#demo" class="hover:text-cyber-green transition-colors">./demo</a>
                     <a href="#features" class="hover:text-cyber-green transition-colors">./features</a>
                     <a href="https://github.com/ZheWang-stack/FairProp-Inspector" target="_blank"
@@ -134,21 +135,27 @@
                         Replace fragile regex with context-aware AI that runs locally on your infrastructure.
                     </p>
 
-                    <div class="flex flex-col sm:flex-row gap-4 font-mono">
+                    <div class="flex flex-col sm:flex-row gap-4 font-mono" x-data="{ copied: false }">
                         <div class="relative group">
                             <div
                                 class="absolute -inset-0.5 bg-gradient-to-r from-cyber-green to-blue-600 rounded opacity-50 blur group-hover:opacity-100 transition duration-200">
                             </div>
                             <button
                                 class="relative w-full bg-black text-white border border-gray-800 px-6 py-4 rounded flex items-center gap-4 hover:bg-gray-900 transition-colors"
-                                onclick="navigator.clipboard.writeText('pip install fairprop-inspector')">
+                                @click="navigator.clipboard.writeText('pip install fairprop-inspector'); copied = true; setTimeout(() => copied = false, 2000)">
                                 <span class="text-cyber-green">$</span> pip install fairprop-inspector
-                                <svg class="w-4 h-4 ml-auto text-gray-500" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
-                                    </path>
-                                </svg>
+                                <div class="ml-auto flex items-center gap-2">
+                                    <span x-show="copied" x-transition class="text-xs text-cyber-green">Copied!</span>
+                                    <svg class="w-4 h-4 text-gray-500" :class="{'text-cyber-green': copied}" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path x-show="!copied" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
+                                        </path>
+                                        <path x-show="copied" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
                             </button>
                         </div>
                     </div>
@@ -175,16 +182,20 @@
                         <!-- Terminal Content -->
                         <div class="p-6 h-[400px] overflow-y-auto" x-data="terminal()">
                             <template x-for="(line, index) in lines" :key="index">
-                                <div class="mb-2">
-                                    <span class="text-purple-400" x-show="line.type === 'prompt'">➜</span>
-                                    <span class="text-blue-400" x-show="line.type === 'prompt'">~</span>
+                                <div class="mb-1 flex gap-2">
+                                    <template x-if="line.type === 'prompt' || line.type === 'cmd'">
+                                        <div class="flex gap-2 shrink-0">
+                                            <span class="text-purple-400">➜</span>
+                                            <span class="text-blue-400">~</span>
+                                        </div>
+                                    </template>
                                     <span :class="{
                                         'text-gray-300': line.type === 'cmd',
                                         'text-gray-400': line.type === 'output',
                                         'text-cyber-green': line.type === 'success',
                                         'text-red-400': line.type === 'error',
                                         'text-yellow-400': line.type === 'info'
-                                    }" x-html="line.text"></span>
+                                    }" class="break-all" x-html="line.text"></span>
                                 </div>
                             </template>
                             <div class="flex items-center" x-show="!finished">
@@ -197,6 +208,24 @@
                     </div>
                 </div>
             </div>
+
+            <!-- About Section -->
+            <section id="about" class="mt-32 border-l border-cyber-green/30 pl-8 max-w-3xl">
+                <h2 class="text-3xl font-bold text-white mb-6 font-mono"><span class="text-cyber-green">01.</span>
+                    Mission Control</h2>
+                <p class="text-gray-400 leading-relaxed mb-6 text-lg">
+                    FairProp Inspector was born out of a critical need in the real-estate AI era: <span
+                        class="text-white">Auditability without Compromise.</span>
+                    As AI agents begin to handle property listings and tenant communications, the risk of subtle Fair
+                    Housing Act (FHA) violations has grown exponentially.
+                </p>
+                <p class="text-gray-400 leading-relaxed text-lg">
+                    We provide the infrastructure to move compliance from slow human reviews to <span
+                        class="text-white">real-time, edge-native inference.</span>
+                    By combining the linguistic understanding of ModernBERT with deterministic heuristic layers, we
+                    ensure your AI remains fair, compliant, and private.
+                </p>
+            </section>
 
             <!-- Stats / Features Grid -->
             <section id="features" class="mt-32 grid md:grid-cols-3 gap-8 px-4">
@@ -294,8 +323,7 @@
                         await this.wait(30 + Math.random() * 50);
                     }
                     await this.wait(200);
-                    this.lines.push({ type: 'prompt', text: '' }); // Spacer
-                    this.lines.push({ type: 'cmd', text: '➜ ~ ' + text });
+                    this.addLine('cmd', text);
                     this.currentInput = '';
                 },
 
