@@ -3,6 +3,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/ZheWang-stack/FairProp-Inspector/actions/workflows/ci.yaml/badge.svg)](https://github.com/ZheWang-stack/FairProp-Inspector/actions/workflows/ci.yaml)
 [![Model: ModernBERT](https://img.shields.io/badge/Model-ModernBERT-blueviolet)](https://huggingface.co/answerdotai/ModernBERT-base)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 > **The Compliance Layer for Real Estate AI Agent.**
 
@@ -64,6 +67,37 @@ FairProp Inspector bridges the gap between simple regex rules and expensive clou
 
 *Benchmarks run on Intel i7-12700K CPU with ONNX Runtime optimization.*
 
+## ⚡ Quick Start
+
+Get started in 30 seconds:
+
+```python
+from src.inference.predict import predict
+
+# Detect FHA violations instantly
+text = "No kids under 12 allowed"
+label, confidence = predict(text, "artifacts/model")
+
+print(f"{label}: {confidence:.1%}")
+# Output: NON_COMPLIANT: 99.8%
+```
+
+**Try it now**:
+```bash
+python examples/quickstart.py
+```
+
+## 📚 Examples
+
+Explore our ready-to-run examples:
+
+- **[Quick Start](examples/quickstart.py)** - 5 lines of code to get started
+- **[Edge Inference](examples/edge_inference.py)** - Production-ready with error handling and batch processing
+- **[Batch Processing](examples/batch_processing.py)** - Efficiently process multiple property listings
+- **[Jupyter Tutorial](examples/notebooks/tutorial.ipynb)** - Interactive notebook with visualizations and performance analysis
+
+See [examples/README.md](examples/README.md) for detailed usage instructions.
+
 ## 🏗️ Architecture
 
 ### The Inspector Pipeline
@@ -97,8 +131,31 @@ python src/inference/predict.py "No kids under 12 allowed in the specialized qui
 # Output: [NON_COMPLIANT] 98.4% Confidence
 ```
 
+## 📖 Documentation
+
+- **[Training Guide](docs/training_guide.md)** - Complete guide to training custom models with GPT-4 prompt templates
+- **[Benchmarks](benchmarks/README.md)** - Performance comparison and accuracy testing
+- **[Examples](examples/README.md)** - Ready-to-run code samples
+- **[ROADMAP](ROADMAP.md)** - Project development plan and quarterly goals
+- **[CHANGELOG](CHANGELOG.md)** - Version history and release notes
+
 ## 🤝 Contributing
-We welcome contributions from the community. Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) for architectural guidelines and code standards.
+
+We welcome contributions from the community! Please see:
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines and code standards
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) - Community guidelines
+- [Issue Templates](.github/ISSUE_TEMPLATE/) - Bug reports and feature requests
 
 ## 📄 License
+
 This project is licensed under the [MIT License](LICENSE).
+
+---
+
+<p align="center">
+  <strong>Built with ❤️ for Fair Housing Compliance</strong><br>
+  <a href="https://github.com/ZheWang-stack/FairProp-Inspector/stargazers">⭐ Star us on GitHub</a> |
+  <a href="https://github.com/ZheWang-stack/FairProp-Inspector/issues">🐛 Report Bug</a> |
+  <a href="https://github.com/ZheWang-stack/FairProp-Inspector/issues">💡 Request Feature</a>
+</p>
