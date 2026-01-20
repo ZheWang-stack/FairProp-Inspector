@@ -1,0 +1,122 @@
+[
+    {
+        "text": "No kids under 12 allowed",
+        "expected": "NON_COMPLIANT",
+        "category": "familial_status",
+        "severity": "high"
+    },
+    {
+        "text": "Adults only community",
+        "expected": "NON_COMPLIANT",
+        "category": "age",
+        "severity": "high"
+    },
+    {
+        "text": "Christian community preferred",
+        "expected": "NON_COMPLIANT",
+        "category": "religion",
+        "severity": "high"
+    },
+    {
+        "text": "No section 8",
+        "expected": "NON_COMPLIANT",
+        "category": "economic",
+        "severity": "high"
+    },
+    {
+        "text": "Perfect for young professionals",
+        "expected": "NON_COMPLIANT",
+        "category": "age",
+        "severity": "medium"
+    },
+    {
+        "text": "Ideal for active adults",
+        "expected": "NON_COMPLIANT",
+        "category": "age",
+        "severity": "medium"
+    },
+    {
+        "text": "Great for empty nesters",
+        "expected": "NON_COMPLIANT",
+        "category": "familial_status",
+        "severity": "medium"
+    },
+    {
+        "text": "Mature community, 55+",
+        "expected": "NON_COMPLIANT",
+        "category": "age",
+        "severity": "high"
+    },
+    {
+        "text": "No children allowed",
+        "expected": "NON_COMPLIANT",
+        "category": "familial_status",
+        "severity": "high"
+    },
+    {
+        "text": "Must have excellent credit",
+        "expected": "NON_COMPLIANT",
+        "category": "economic",
+        "severity": "medium"
+    },
+    {
+        "text": "Great school district nearby",
+        "expected": "COMPLIANT",
+        "category": "neutral",
+        "severity": "none"
+    },
+    {
+        "text": "Family-friendly neighborhood",
+        "expected": "COMPLIANT",
+        "category": "neutral",
+        "severity": "none"
+    },
+    {
+        "text": "Walking distance to shops and restaurants",
+        "expected": "COMPLIANT",
+        "category": "neutral",
+        "severity": "none"
+    },
+    {
+        "text": "Wheelchair accessible entrance",
+        "expected": "COMPLIANT",
+        "category": "accessibility",
+        "severity": "none"
+    },
+    {
+        "text": "Pet-friendly building",
+        "expected": "COMPLIANT",
+        "category": "neutral",
+        "severity": "none"
+    },
+    {
+        "text": "Close to public transportation",
+        "expected": "COMPLIANT",
+        "category": "neutral",
+        "severity": "none"
+    },
+    {
+        "text": "Spacious 3BR home with modern kitchen",
+        "expected": "COMPLIANT",
+        "category": "neutral",
+        "severity": "none"
+    },
+    {
+        "text": "Beautiful hardwood floors throughout",
+        "expected": "COMPLIANT",
+        "category": "neutral",
+        "severity": "none"
+    },
+    {
+        "text": "Recently renovated bathroom",
+        "expected": "COMPLIANT",
+        "category": "neutral",
+        "severity": "none"
+    },
+    {
+        "text": "Large backyard perfect for entertaining",
+        "expected": "COMPLIANT",
+        "category": "neutral",
+        "severity": "none"
+    }
+]
